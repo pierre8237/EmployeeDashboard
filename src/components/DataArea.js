@@ -3,16 +3,27 @@ import DataTable from "./DataTable";
 import Nav from "./Nav";
 import API from "../utils/API";
 export default class DataArea extends Component {
-  state = {
-    users: [],
-    filteredUsers: []
-  };
-  componentDidMount() {
-    console.log("API, ", API);
-    // () => {
-    //   API.searchUsers();
-    // };
+  constructor(props) {
+    super(props);
+    this.state = {
+      users: [],
+      filteredUsers: []
+    };
   }
+
+  componentDidMount() {
+    API.searchUsers
+      .then(response =>
+        // handle success
+        //console.log(response.data.results);
+        this.setState({ users: response.data.results })
+      )
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      });
+  }
+
   headings = [
     { name: "Image" },
     { name: "Name" },
@@ -26,6 +37,7 @@ export default class DataArea extends Component {
   };
 
   render() {
+    console.log(this.state.users);
     return (
       <Fragment>
         <Nav handleSearchChange={this.handleSearchChange} />
