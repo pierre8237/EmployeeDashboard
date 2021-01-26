@@ -25,11 +25,11 @@ export default class DataArea extends Component {
   }
 
   headings = [
-    { name: "Image" },
+    { cell: "Phone" },
+    { dob: "DOB" },
+    { email: "Email" },
     { name: "Name" },
-    { name: "Phone" },
-    { name: "Email" },
-    { name: "DOB" }
+    { picture: "Image" }
   ];
 
   handleSearchChange = event => {
